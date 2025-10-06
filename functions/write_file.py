@@ -9,7 +9,6 @@ def write_file(working_directory, file_path, content):
     
     parent_dir = os.path.dirname(abs_file_path)
     if not os.path.isdir(parent_dir):
-         parent_dir = os.path.dirname(abs_file_path)
          try:
             os.makedirs(parent_dir)
          except Exception as e:
