@@ -7,6 +7,7 @@ from functions.get_files_info import schema_get_files_info
 from functions.get_file_content import schema_get_file_content
 from functions.write_file import schema_write_file
 from functions.run_python_file import schema_run_python_file
+from call_function import call_function
 
 
 def main():
@@ -31,9 +32,9 @@ def main():
         print("I need a prompt")
         sys.exit(1)
 
-    verbose_flage = False
+    verbose_flag = False
     if len(sys.argv) == 3 and sys.argv[2] == "--verbose":
-        verbose_flage = True
+        verbose_flag = True
     prompt = sys.argv[1]
 
     messages = [
@@ -63,16 +64,14 @@ def main():
         print("no response or usage metadata")
         return
 
-    if verbose_flage:
+    if verbose_flag:
         print(f"User prompt: {prompt}")
         print(f"Prompt tokens: {response.usage_metadata.prompt_token_count}")
         print(f"Response tokens: {response.usage_metadata.candidates_token_count}")
 
     if response.function_calls:
         for function_call_part in response.function_calls:
-            print(
-                f"Calling function: {function_call_part.name}({function_call_part.args})"
-            )
+            print(call_function(function_call_part, verbose_flag))
     else:
         print(response.text)
 
