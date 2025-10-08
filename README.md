@@ -1,4 +1,4 @@
-(# AI Agent
+# AI Agent
 
 A small local AI coding agent that uses Google's GenAI SDK to generate function-call plans and perform file operations in a constrained working directory. It provides helper functions to list files, read file contents, write files, and execute Python files safely.
 
@@ -67,5 +67,4 @@ python tests.py
 
 ## License
 
-MIT-style — adapt as needed.
-
+This project is licensed under the MIT License.
