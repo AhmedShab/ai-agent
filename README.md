@@ -11,18 +11,9 @@ This repository is intended as a minimal example and a starting point for buildi
 - Write or overwrite files, creating parent directories when needed
 - Execute Python files (with basic safety checks)
 
-## Requirements
+## Setup
 
-- Python 3.10+
-- The project dependencies are declared in `pyproject.toml` and include:
-	- `google-genai` (Gemini / GenAI SDK)
-	- `python-dotenv`
-
-Install dependencies:
-
-```bash
-pip install google-genai==1.12.1 python-dotenv==1.1.0
-```
+This project uses [**uv**](https://docs.astral.sh/uv/) for dependency and environment management.
 
 ## Configuration
 
@@ -37,8 +28,8 @@ GEMINI_API_KEY=your_api_key_here
 The main CLI entrypoint is `main.py`. It accepts a single prompt argument and an optional `--verbose` flag.
 
 ```bash
-python main.py "Run tests and show me files in the calculator package"
-python main.py "List files" --verbose
+uv run main.py "Run tests and show me files in the calculator package"
+uv run main.py "List files" --verbose
 ```
 
 The agent will contact the GenAI API and may plan one or more function calls. The functions exposed to the model are declared as `schema_*` objects in the `functions/` package.
@@ -62,7 +53,7 @@ Notes:
 There is a `tests.py` file with quick checks. Run it while in the project root and with the virtual environment active.
 
 ```bash
-python tests.py
+uv run tests.py
 ```
 
 ## License
